@@ -1,0 +1,122 @@
+/* Define the cool color palette */
+:root {
+    --primary-color: #3c4f65;
+    --secondary-color: #c0c5ce;
+    --accent-color: #72b6c6;
+  }
+  
+  /* Set the font family and size */
+  body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+  }
+  
+  /* Add an animated linear gradient background to the login container */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+    animation: gradientAnimation 10s ease infinite;
+  }
+  
+  /* Define the animation */
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Add a max-width to the form for responsiveness */
+    width: 100%; /* Add a width of 100% to the form for responsiveness */
+    box-sizing: border-box; /* Add box-sizing to include padding in the max-width */
+  }
+  
+  h1 {
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+  }
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .icon {
+    color: var(--accent-color);
+    margin-right: 10px;
+  }
+  
+  input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  /* Add a border to the submit button and change the text color to white */
+  button {
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out;
+    margin-top: 20px; /* Add some margin to the top of the button */
+  }
+  
+  /* Change the hover background color to a lighter shade of the accent color */
+  button:hover {
+    background-color: #88d4e9;
+  }
+  
+  /* Change the hover background color of the submit button to a darker shade of the accent color */
+  button[type="submit"]:hover {
+    background-color: #007c91;
+  }
+  
+  /* Change the hover background color of the sign-up button to a darker shade of red */
+  button[type="button"]:hover {
+    background-color: #c94c4c;
+    color: #fff;
+  }
+  
+  /* Add a shadow to the input fields */
+  input:focus {
+    box-shadow: 0 0 0 2px var(--accent-color);
+  }
+  
+  /* Add responsive styles for smaller screens */
+  @media screen and (max-width: 480px) {
+    form {
+      padding: 20px; /* Reduce the padding on smaller screens */
+    }
+    
+    input {
+      font-size: 14px; /* Reduce the font size on smaller screens */
+    }
+    
+    button {
+      font-size: 14px; /* Reduce the font size on smaller screens */
+    }
+  }

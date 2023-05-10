@@ -1,0 +1,74 @@
+:root {
+    --primary-color: #3c4f65;
+    --secondary-color: #c0c5ce;
+    --accent-color: #72b6c6;
+  }
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--secondary-color);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+  }
+  
+  input,
+  textarea {
+    margin-bottom: 30px;
+    padding: 16px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    background-color: #fff;
+  }
+  
+  button[type="submit"] {
+    padding: 16px;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #5db3c8;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    form {
+      padding: 20px;
+    }
+    
+    label {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    
+    input,
+    textarea {
+      margin-bottom: 20px;
+      padding: 12px;
+      font-size: 1rem;
+    }
+    
+    button[type="submit"] {
+      padding: 12px;
+      font-size: 1rem;
+    }
+  }

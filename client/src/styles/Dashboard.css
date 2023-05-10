@@ -1,0 +1,176 @@
+/* Define color variables */
+:root {
+    --primary-color: #3c4f65;
+    --secondary-color: #c0c5ce;
+    --accent-color: #72b6c6;
+  }
+  
+  /* Global styles */
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #fff;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2196f3;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  header p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #333;
+  }
+  
+  /* Post styles */
+  .post {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .post h3 {
+    margin-top: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .post p {
+    margin: 10px 0 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .post .author {
+    font-style: italic;
+    color: #999;
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  /* Form styles */
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  input,
+  textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  button[type="submit"] {
+    padding: 10px;
+    background-color: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0d8aff;
+  }
+  
+  @media screen and (max-width: 768px) {
+    header {
+      padding: 10px;
+    }
+  
+    header h1 {
+      font-size: 2rem;
+    }
+  
+    header p {
+      font-size: 1.2rem;
+    }
+  
+    .post {
+      padding: 15px;
+    }
+  
+    .post h3 {
+      font-size: 1.8rem;
+    }
+  
+    .post p {
+      font-size: 1.1rem;
+    }
+  
+    .post .author {
+      font-size: 1.1rem;
+    }
+  
+    form {
+      padding: 15px;
+      margin-top: 20px;
+    }
+  
+    label {
+      font-size: 1.3rem;
+    }
+  
+    input,
+    textarea {
+      font-size: 1.1rem;
+    }
+  
+    button[type="submit"] {
+      font-size: 1.1rem;
+      padding: 8px;
+    }
+  }

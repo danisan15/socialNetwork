@@ -1,6 +1,6 @@
 # SOCIAL NETWORK APP
 
-## This is a facebook clone that was created using <a href="https://es.react.dev/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="50" height="50"><a/>, <a href="https://nodejs.org/es"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png" width="75" height="50"><a/> and <a href="https://supabase.com/"><img src="https://seeklogo.com/images/S/supabase-logo-DCC676FFE2-seeklogo.com.png" width="50" height="50"><a/>
+## This is a facebook clone that was created using <a href="https://es.react.dev/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="50" height="50"><a/>, <a href="https://nodejs.org/es" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png" width="75" height="50"><a/> and <a href="https://supabase.com/" target="_blank"><img src="https://seeklogo.com/images/S/supabase-logo-DCC676FFE2-seeklogo.com.png" width="50" height="50"><a/>
 
 ---
 

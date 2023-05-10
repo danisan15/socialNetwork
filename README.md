@@ -4,7 +4,7 @@
 
 ---
 
-In order to see this app running, you need to use to clone this repository, you can clone it by typing this in the cmd:
+In order to see this app running, you need to clone this repository, you can clone it by typing this in the cmd:
 
 > git clone https://github.com/danisan15/socialNetwork
 

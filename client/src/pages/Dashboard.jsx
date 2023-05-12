@@ -49,15 +49,15 @@ function Dashboard() {
             </p>
           </div>
         ))}
-      </div>
-      {user && (
-        <div>
-          <h2>New Post</h2>
-          <NewPostForm onNewPost={handleNewPost} />
         </div>
-      )}
-    </div>
-  );
-}
+        {user && (
+          <div>
+            <h2>New Post</h2>
+            <NewPostForm onNewPost={handleNewPost} />
+          </div>
+        )}
+      </div>
+    );
+  }
 
-export default Dashboard;
+  export default Dashboard;

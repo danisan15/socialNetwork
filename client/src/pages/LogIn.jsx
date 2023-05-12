@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { useNavigate } from "react-router-dom";
 import "../styles/LogIn.css";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { createClient } from "@supabase/supabase-js";
+import axios from "axios";
 
 function LogIn() {
   const [email, setEmail] = useState("");
@@ -37,11 +38,6 @@ function LogIn() {
       if (error) {
         throw error;
       }
-
-      console.log(user);
-      console.log(session);
-
-      navigate("/success"); // Redirect to "/success" route if login is successful
     } catch (error) {
       console.error(error);
       alert(error.message);
@@ -56,7 +52,7 @@ function LogIn() {
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1>Log in</h1>
         <div className="input-container">
           <FaEnvelope className="icon" />
           <input

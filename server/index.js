@@ -15,7 +15,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(morgan("combined"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,16 +23,51 @@ app.use(bodyParser.json());
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-app.get("/user", async (req, res) => {});
+app.get("/user", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("email", email)
+      .eq("password", password)
+      .single();
+    data !== null ? res.status(200).send(data) : res.status(404).send(false);
+  } catch (error) {
+    throw error;
+  }
+});
 
-app.post("/posts", async (req, res) => {
-  
+app.post("/user", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // Generate a new UUID for the auth_uid column
+    const { data: auth } = await supabase.auth.signUp({ email, password });
+
+    // Insert the new user into the users table
+    const { data: user, error } = await supabase
+      .from("users")
+      .insert({ name, email, password, auth_uid: auth.user.id })
+      .single();
+
+    if (error) {
+      throw error;
+    }
+
+    return res.status(201).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
 
 app.get("/posts", async (req, res) => {
   console.log(req.body);
   res.send("get");
 });
+
+app.post("/posts", async (req, res) => {});
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);

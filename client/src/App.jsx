@@ -11,6 +11,14 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
+          {/*
+          <ProtectedRoute
+            exact
+            path="/dashboard"
+            component={Dashboard}
+            isAuthenticated={isAuthenticated}
+          />
+          */}
           <Route path="*" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<ProtectedRoutes />}>

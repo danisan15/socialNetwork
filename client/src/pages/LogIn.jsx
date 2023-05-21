@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/LogIn.css";
 import { FaEnvelope, FaLock } from "react-icons/fa";
@@ -8,14 +8,22 @@ import axios from "axios";
 function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
   const navigate = useNavigate(); // Get the navigate function from useNavigate hook
+
+  useEffect(() => {
+    setEmail(sessionStorage.getItem("email"));
+    setPassword(sessionStorage.getItem("password"));
+  }, []);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+    sessionStorage.setItem("email", email);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+    sessionStorage.setItem("password", password);
   };
 
   const handleSubmit = async (event) => {
@@ -30,14 +38,18 @@ function LogIn() {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     try {
-      const { user, session, error } = await supabase.auth.signInWithPassword({
+      const { data } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
 
+      console.log(data.user?.aud === undefined ? false : true);
+      console.log(null === false);
+
+      /*
       if (error) {
         throw error;
-      }
+      }*/
     } catch (error) {
       console.error(error);
       alert(error.message);
@@ -59,7 +71,7 @@ function LogIn() {
             type="email"
             value={email}
             onChange={handleEmailChange}
-            placeholder="Email"
+            placeholder="example@yourmail.com"
           />
         </div>
         <div className="input-container">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { createClient } from "@supabase/supabase-js";
@@ -13,16 +13,25 @@ function SignUp() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setUsername(sessionStorage.getItem("username"));
+    setEmail(sessionStorage.getItem("email"));
+    setPassword(sessionStorage.getItem("password"));
+  }, []);
+
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
+    sessionStorage.setItem("username", username);
   };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+    sessionStorage.setItem("email", email);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+    sessionStorage.setItem("password", password);
   };
 
   const handleSubmit = async (event) => {
@@ -73,7 +82,7 @@ function SignUp() {
               type="email"
               value={email}
               onChange={handleEmailChange}
-              placeholder="Email"
+              placeholder="example@yourmail.com"
             />
           </div>
           <div className="input-container">

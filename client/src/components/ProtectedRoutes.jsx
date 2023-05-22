@@ -1,11 +1,11 @@
-import React from "react";
-import SignUp from "../pages/SignUp";
+import React, { useEffect } from "react";
+import { Navigate } from "react-router-dom";
 
-const ProtectedRoutes = ({ children }) => {
-  const { user } = useAuth();
-  console.log(user);
-
-  return <>{users !== null ? { children } : <div>User not found!</div>}</>;
+const ProtectedRoutes = ({ isAuthenticated, children }) => {
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
 };
 
 export default ProtectedRoutes;

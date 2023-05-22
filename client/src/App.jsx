@@ -5,25 +5,36 @@ import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import { useState } from "react";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  const handleAuthentication = (bool) => {
+    setIsAuthenticated(bool);
+    console.log(isAuthenticated);
+  };
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          {/*
-          <ProtectedRoute
-            exact
+          <Route
             path="/dashboard"
-            component={Dashboard}
-            isAuthenticated={isAuthenticated}
+            element={
+              <ProtectedRoutes isAuthenticated={isAuthenticated}>
+                <Dashboard />
+              </ProtectedRoutes>
+            }
           />
-          */}
-          <Route path="*" element={<LogIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/dashboard" element={<ProtectedRoutes />}>
-            <Route element={<Dashboard />} />
-          </Route>
+          <Route
+            path="/login"
+            element={<LogIn handleAuthentication={handleAuthentication} />}
+          />
+          <Route
+            path="/signup"
+            element={<SignUp handleAuthentication={handleAuthentication} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

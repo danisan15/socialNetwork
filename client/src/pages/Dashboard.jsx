@@ -9,9 +9,12 @@ function Dashboard() {
 
   useEffect(() => {
     // Fetch user data
+    let userEmail = {
+      email: sessionStorage.getItem("email"),
+    };
     axios
-      .get("/api/user")
-      .then((response) => setUser(response.data))
+      .post("http://localhost:3000/getuserinfo", userEmail)
+      .then((response) => setUser(response.data.user))
       .catch((error) => console.error(error));
 
     // Fetch posts
@@ -49,15 +52,15 @@ function Dashboard() {
             </p>
           </div>
         ))}
-        </div>
-        {user && (
-          <div>
-            <h2>New Post</h2>
-            <NewPostForm onNewPost={handleNewPost} />
-          </div>
-        )}
       </div>
-    );
-  }
+      {user && (
+        <div>
+          <h2>New Post</h2>
+          <NewPostForm onNewPost={handleNewPost} />
+        </div>
+      )}
+    </div>
+  );
+}
 
-  export default Dashboard;
+export default Dashboard;

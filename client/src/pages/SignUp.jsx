@@ -19,19 +19,19 @@ function SignUp() {
     setPassword(sessionStorage.getItem("password"));
   }, []);
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-    sessionStorage.setItem("username", username);
+  const handleUsernameChange = async (event) => {
+    await setUsername(event.target.value);
+    sessionStorage.setItem("username", event.target.value);
   };
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-    sessionStorage.setItem("email", email);
+  const handleEmailChange = async (event) => {
+    await setEmail(event.target.value);
+    sessionStorage.setItem("email", event.target.value);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-    sessionStorage.setItem("password", password);
+    sessionStorage.setItem("password", event.target.value);
   };
 
   const handleSubmit = async (event) => {

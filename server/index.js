@@ -23,6 +23,20 @@ app.use(bodyParser.json());
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+app.post("/getuserinfo", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .select("name")
+      .eq("email", email)
+      .single();
+    res.status(200).send({ user: data.name });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.get("/user", async (req, res) => {
   const { email, password } = req.body;
   try {

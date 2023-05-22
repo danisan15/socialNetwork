@@ -3,27 +3,25 @@ import { useNavigate } from "react-router-dom";
 import "../styles/LogIn.css";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { createClient } from "@supabase/supabase-js";
-import axios from "axios";
 
-function LogIn() {
+function LogIn({ handleAuthentication }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
   const navigate = useNavigate(); // Get the navigate function from useNavigate hook
 
   useEffect(() => {
-    setEmail(sessionStorage.getItem("email"));
-    setPassword(sessionStorage.getItem("password"));
+    setEmail(sessionStorage.getItem("email", email));
+    setPassword(sessionStorage.getItem("password", password));
   }, []);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
-    sessionStorage.setItem("email", email);
+    sessionStorage.setItem("email", event.target.value);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-    sessionStorage.setItem("password", password);
+    sessionStorage.setItem("password", event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -43,13 +41,13 @@ function LogIn() {
         password: password,
       });
 
-      console.log(data.user?.aud === undefined ? false : true);
-      console.log(null === false);
-
-      /*
-      if (error) {
-        throw error;
-      }*/
+      if (data.user?.aud !== undefined) {
+        handleAuthentication(true);
+        navigate("/dashboard");
+      } else {
+        alert("User or password is wrong");
+        console.error("Auth Error");
+      }
     } catch (error) {
       console.error(error);
       alert(error.message);

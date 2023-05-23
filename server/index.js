@@ -31,7 +31,7 @@ app.post("/getuserinfo", async (req, res) => {
       .select("name")
       .eq("email", email)
       .single();
-    res.status(200).send({ user: data.name });
+    res.status(200).send({ name: data.name });
   } catch (error) {
     console.log(error);
   }
@@ -76,9 +76,18 @@ app.post("/user", async (req, res) => {
   }
 });
 
-app.get("/posts", async (req, res) => {
-  console.log(req.body);
-  res.send("get");
+app.post("/posts", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const { data, error } = await supabase
+      .from("auth.users")
+      .select("*")
+      .single();
+    console.log(data);
+    res.status(200).send(data);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.post("/posts", async (req, res) => {});

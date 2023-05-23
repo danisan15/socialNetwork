@@ -28,7 +28,7 @@ function App() {
             }
           />
           <Route
-            path="/login"
+            path="*"
             element={<LogIn handleAuthentication={handleAuthentication} />}
           />
           <Route

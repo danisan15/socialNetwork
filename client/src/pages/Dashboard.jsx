@@ -12,9 +12,10 @@ function Dashboard() {
     let userEmail = {
       email: sessionStorage.getItem("email"),
     };
+    sessionStorage.clear();
     axios
       .post("http://localhost:3000/getuserinfo", userEmail)
-      .then((response) => setUser(response.data.user))
+      .then((response) => setUser(response.data))
       .catch((error) => console.error(error));
 
     // Fetch posts

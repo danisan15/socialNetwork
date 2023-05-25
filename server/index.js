@@ -37,6 +37,19 @@ app.post("/getuserinfo", async (req, res) => {
   }
 });
 
+app.post("/getposts", async (req, res) => {
+  const { name } = req.body;
+  try {
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("author", name);
+    res.status(200).send(data);
+  } catch (error) {
+    throw error;
+  }
+});
+
 app.get("/user", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -77,20 +90,19 @@ app.post("/user", async (req, res) => {
 });
 
 app.post("/posts", async (req, res) => {
-  const { email } = req.body;
+  const { title, content, author } = req.body;
+  const date = new Date();
   try {
     const { data, error } = await supabase
-      .from("auth.users")
-      .select("*")
+      .from("posts")
+      .insert({ title, content, author, date: date })
       .single();
     console.log(data);
-    res.status(200).send(data);
+    res.status(200).send("Post created!");
   } catch (error) {
     console.log(error);
   }
 });
-
-app.post("/posts", async (req, res) => {});
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);

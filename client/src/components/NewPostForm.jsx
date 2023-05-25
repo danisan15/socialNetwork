@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "../styles/NewPostForm.css";
 
-function NewPostForm({ onNewPost }) {
+function NewPostForm({ onNewPost, author }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newPost = { title, content };
+    const newPost = { title, content, author };
     onNewPost(newPost);
     setTitle("");
     setContent("");

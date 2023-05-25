@@ -20,8 +20,8 @@ function Dashboard() {
 
     // Fetch posts
     axios
-      .get("/api/posts")
-      .then((response) => setPosts(response.data))
+      .get("http://localhost:3000/getposts", user)
+      .then((response) => console.log(response.data))
       .catch((error) => console.error(error));
   }, []);
 
@@ -31,7 +31,7 @@ function Dashboard() {
 
     // Send new post to server
     axios
-      .post("/api/posts", newPost)
+      .post("http://localhost:3000/posts", newPost)
       .then((response) => console.log(response.data))
       .catch((error) => console.error(error));
   };
@@ -57,7 +57,7 @@ function Dashboard() {
       {user && (
         <div>
           <h2>New Post</h2>
-          <NewPostForm onNewPost={handleNewPost} />
+          <NewPostForm onNewPost={handleNewPost} author={user.name} />
         </div>
       )}
     </div>

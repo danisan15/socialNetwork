@@ -26,8 +26,6 @@ function LogIn({ handleAuthentication }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
 
     const supabaseUrl = "https://sgfywdesnhcqfvpkeyhg.supabase.co";
     const supabaseKey =

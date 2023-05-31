@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// Get user
 app.post("/getuserinfo", async (req, res) => {
   const { email } = req.body;
   try {
@@ -33,17 +34,15 @@ app.post("/getuserinfo", async (req, res) => {
       .single();
     res.status(200).send({ name: data.name });
   } catch (error) {
-    console.log(error);
+    res.status(500).send(error);
   }
 });
 
+// Get all posts from DB
 app.post("/getposts", async (req, res) => {
   const { name } = req.body;
   try {
-    const { data, error } = await supabase
-      .from("posts")
-      .select("*")
-      .eq("author", name);
+    const { data, error } = await supabase.from("posts").select("*");
     res.status(200).send(data);
   } catch (error) {
     throw error;
@@ -65,6 +64,7 @@ app.get("/user", async (req, res) => {
   }
 });
 
+// Add new user to DB
 app.post("/user", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -89,6 +89,7 @@ app.post("/user", async (req, res) => {
   }
 });
 
+// Add new post
 app.post("/posts", async (req, res) => {
   const { title, content, author } = req.body;
   const date = new Date();
@@ -97,11 +98,26 @@ app.post("/posts", async (req, res) => {
       .from("posts")
       .insert({ title, content, author, date: date })
       .single();
-    console.log(data);
-    res.status(200).send("Post created!");
+    res.status(200).send("Post Created!");
   } catch (error) {
     console.log(error);
   }
+});
+
+// Delete post
+app.delete("/deletepost", async (req, res) => {
+  const { id } = req.body;
+  try {
+    const { data, error } = await supabase
+      .from("posts")
+      .delete()
+      .eq("id", id)
+      .single();
+    return res.status(200).send(true);
+  } catch (error) {
+    console.log(error);
+  }
+  res.status(404).send(false);
 });
 
 app.listen(PORT, () => {
